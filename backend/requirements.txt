@@ -1,0 +1,10 @@
+fastapi==0.100.0
+Pillow==8.3.2
+tab-transformer-pytorch
+dadata==21.10.1
+scikit-learn==1.1.3
+clip @ git+https://github.com/openai/CLIP.git
+numpy==1.23.4
+uvicorn
+# torch==1.13.1
+# torchvision==0.14.1

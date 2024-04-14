@@ -1,0 +1,34 @@
+version: '3'
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    deploy:
+      resources:
+        limits:
+          cpus: '2'   # Максимальное количество виртуальных ЦП
+          memory: 4G    # Максимальный лимит памяти
+        reservations:
+          cpus: '0.2'   # Минимальное количество виртуальных ЦП
+          memory: 512M  # Минимальный лимит памяти
+    ports:
+      - 8081:8081
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    depends_on:
+      - backend
+    environment:
+      - GRADIO_SERVER_PORT=7861
+    deploy:
+      resources:
+        limits:
+          cpus: '1'   # Максимальное количество виртуальных ЦП
+          memory: 1G    # Максимальный лимит памяти
+        reservations:
+          cpus: '0.2'   # Минимальное количество виртуальных ЦП
+          memory: 512M  # Минимальный лимит памяти
+    ports:
+      - 7861:7861
